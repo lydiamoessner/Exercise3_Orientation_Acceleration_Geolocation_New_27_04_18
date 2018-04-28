@@ -39,7 +39,8 @@
                 if(r.alpha>50||r.beta>50||r.gamma>50){
                   document.body.style.backgroundColor = "red";
                   getLocation();
-                  showPosition();
+                  // showPosition();
+                  // getLocation();
           
 
                 }
@@ -51,21 +52,25 @@
       var youarehere = document.getElementById("location");
       var position;
       function getLocation() {
+          // console.log("YAY I'VE BEEN CALLED");
                     if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(showPosition);
+                      // console.log("YAY GEOLOCATION WORKS!");
+                        navigator.geolocation.getCurrentPosition(showPosition, (err)=>{
+                          console.log(err);
+                        });
                       } else { 
+                        console.log("EAT SHIT SUCKER");
                         youarehere.innerHTML = "Geolocation is not supported by this browser.";
                       }
                     }
       function showPosition(position) {
         console.log(position);
         try {
-
           youarehere.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
         } catch (error){
           console.error(error);
         }
-            }
+      }
     }   
     </script>
   </head>
